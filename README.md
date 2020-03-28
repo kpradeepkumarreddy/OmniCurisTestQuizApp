@@ -1,1 +1,1 @@
-![Alt text](/screen-1.jpg?raw=true "Enter Your Details Screen")
+![Alt text](/screen1.jpg?raw=true "Enter Your Details Screen")
