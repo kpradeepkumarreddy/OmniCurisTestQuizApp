@@ -1,0 +1,64 @@
+{
+  "quiz": [
+    {
+      "question": "Q1) 1 + 1 = ?",
+      "options": [
+        {
+          "option": "1"
+        },
+        {
+          "option": "2"
+        },
+        {
+          "option": "3"
+        }
+      ],
+      "answer": "2"
+    },
+    {
+      "question": "Q2) 2 + 2 = ?",
+      "options": [
+        {
+          "option": "2"
+        },
+        {
+          "option": "4"
+        },
+        {
+          "option": "6"
+        }
+      ],
+      "answer": "4"
+    },
+    {
+      "question": "Q3) 3 + 3 = ?",
+      "options": [
+        {
+          "option": "3"
+        },
+        {
+          "option": "6"
+        },
+        {
+          "option": "9"
+        }
+      ],
+      "answer": "6"
+    },
+    {
+      "question": "Q4)  4 + 4 = ?",
+      "options": [
+        {
+          "option": "4"
+        },
+        {
+          "option": "8"
+        },
+        {
+          "option": "12"
+        }
+      ],
+      "answer": "8"
+    }
+  ]
+}
