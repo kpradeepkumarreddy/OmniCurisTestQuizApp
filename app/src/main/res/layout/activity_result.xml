@@ -30,17 +30,21 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsvResults"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_below="@+id/tvMobile"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="40dp"
+        android:background="@drawable/recyclerview_border"
+        android:padding="5dp"
+        android:scrollbarThumbVertical="@color/colorPrimary"
+        android:scrollbars="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvResults"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollIndicators="right"
+            android:padding="5dp"
             android:scrollbars="vertical">
 
         </androidx.recyclerview.widget.RecyclerView>

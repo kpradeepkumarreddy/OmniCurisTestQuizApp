@@ -8,16 +8,15 @@
     <FrameLayout
         android:id="@+id/quizFragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="50dp">
+        android:layout_height="340dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp">
 
         <com.omnicuris.quizapp.utils.NoSwipeViewPager
             android:id="@+id/vpQuizFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp" />
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <Button

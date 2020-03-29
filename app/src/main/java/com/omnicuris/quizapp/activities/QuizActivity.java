@@ -98,7 +98,9 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                         .getRbgQuestion();
                 if (rbgQuestion.getCheckedRadioButtonId() == -1) {
                     // no radio buttons are checked
-                    Toast.makeText(this, "Select an option", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(this, "Select an option", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
                     return;
                 } else {
                     ResultTO resultTO = resultTOList.get(vpQuizFragment.getCurrentItem());
