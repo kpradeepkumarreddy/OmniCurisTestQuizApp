@@ -8,9 +8,10 @@
     <TextView
         android:id="@+id/tvQuestion"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
         android:textSize="15sp" />
 
     <RadioGroup
@@ -53,6 +54,17 @@
             android:buttonTint="#e42714"
             android:checked="false"
             android:text=" option 3"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/rbOption4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:buttonTint="#e42714"
+            android:checked="false"
+            android:text=" option 4"
             android:textSize="12sp" />
     </RadioGroup>
 

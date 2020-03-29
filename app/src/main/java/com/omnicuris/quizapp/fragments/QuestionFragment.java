@@ -35,7 +35,7 @@ public class QuestionFragment extends Fragment {
     private QuestionTO questionTO;
     private String mParam2;
     private RadioGroup rbgQuestion;
-    RadioButton rbOption1, rbOption2, rbOption3;
+    RadioButton rbOption1, rbOption2, rbOption3, rbOption4;
     private OnFragmentInteractionListener mListener;
 
     public RadioGroup getRbgQuestion() {
@@ -121,10 +121,12 @@ public class QuestionFragment extends Fragment {
             rbOption1 = view.findViewById(R.id.rbOption1);
             rbOption2 = view.findViewById(R.id.rbOption2);
             rbOption3 = view.findViewById(R.id.rbOption3);
+            rbOption4 = view.findViewById(R.id.rbOption4);
 
             rbOption1.setText(questionTO.getOptions().get(0));
             rbOption2.setText(questionTO.getOptions().get(1));
             rbOption3.setText(questionTO.getOptions().get(2));
+            rbOption4.setText(questionTO.getOptions().get(3));
             rbgQuestion = view.findViewById(R.id.rbgQuestion);
 
             return view;
