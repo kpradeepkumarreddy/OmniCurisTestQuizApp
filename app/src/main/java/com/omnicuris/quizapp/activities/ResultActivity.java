@@ -87,6 +87,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btnRetry:
                 Intent intent = new Intent(this, QuizActivity.class);
                 intent.putExtra("USER_TO", userTO);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
                 break;
