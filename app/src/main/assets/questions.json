@@ -1,76 +1,184 @@
 {
   "quiz": [
     {
-      "question": "Q1) 1 + 1 = ?",
+      "question": "Q1) The first case of novel coronavirus was identified in ?",
       "options": [
         {
-          "option": "1"
+          "option": "Beijing"
         },
         {
-          "option": "2"
+          "option": "Shanghai"
         },
         {
-          "option": "3"
+          "option": "Wuhan, Hubei"
         },
         {
-          "option": "4"
+          "option": "Tianjin"
         }
       ],
-      "answer": "2"
+      "answer": "Wuhan, Hubei"
     },
     {
-      "question": "Q2) 2 + 2 = ?",
+      "question": "Q2) How long does the novel coronavirus survive outside the body ?",
       "options": [
         {
-          "option": "2"
+          "option": "A week in the air and on surfaces"
         },
         {
-          "option": "6"
+          "option": "Several hours to days"
         },
         {
-          "option": "4"
+          "option": "Upto two and a half weeks"
         },
         {
-          "option": "8"
+          "option": "None of the above"
         }
       ],
-      "answer": "4"
+      "answer": "Several hours to days"
     },
     {
-      "question": "Q3) 3 + 3 = ?",
+      "question": "Q3) What is Coronavirus ?",
       "options": [
         {
-          "option": "3"
+          "option": "It is a large family of viruses"
         },
         {
-          "option": "5"
+          "option": "It belongs to the family of Nidovirus"
         },
         {
-          "option": "9"
+          "option": "Both A and B are correct"
         },
         {
-          "option": "6"
+          "option": "Only A is correct"
         }
       ],
-      "answer": "6"
+      "answer": "Both A and B are correct"
     },
     {
-      "question": "Q4)  4 + 4 = ?",
+      "question": "Q4)  Which of the following diseases are related to coronavirus ?",
       "options": [
         {
-          "option": "8"
+          "option": "MERS"
         },
         {
-          "option": "44"
+          "option": "SARS"
         },
         {
-          "option": "12"
+          "option": "Both A and B"
         },
         {
-          "option": "4"
+          "option": "Neither A nor B"
         }
       ],
-      "answer": "8"
+      "answer": "Both A and B"
+    },
+    {
+      "question": "Q5)  Mild Symptoms of Novel coronavirus are ?",
+      "options": [
+        {
+          "option": "Fever"
+        },
+        {
+          "option": "Cough"
+        },
+        {
+          "option": "Shortness of breath"
+        },
+        {
+          "option": "All the above"
+        }
+      ],
+      "answer": "All the above"
+    },
+    {
+      "question": "Q6)  How coronavirus got its name ?",
+      "options": [
+        {
+          "option": "Due to their crown-like projections"
+        },
+        {
+          "option": "Due to their leaf-like projections"
+        },
+        {
+          "option": "Due to their surface structure of bricks"
+        },
+        {
+          "option": "None of the above"
+        }
+      ],
+      "answer": "Due to their crown-like projections"
+    },
+    {
+      "question": "Q7)  In which age group the COVID-19 spreads ?",
+      "options": [
+        {
+          "option": "COVID-19 occur in all age groups"
+        },
+        {
+          "option": "Coronavirus infection is mild in children"
+        },
+        {
+          "option": "Older person and persons with pre-existing medical conditions are at high risk to develop serious illness"
+        },
+        {
+          "option": "All the above are correct"
+        }
+      ],
+      "answer": "All the above are correct"
+    },
+    {
+      "question": "Q8)  How does Coronavirus transmit ?",
+      "options": [
+        {
+          "option": "When a person sneezes or cough, droplets spread in the air or fall on the ground and nearby surfaces"
+        },
+        {
+          "option": "If another person is nearby and inhales the droplets or touches these surfaces and further touches his face, eyes or mouth, he or she can get an infection"
+        },
+        {
+          "option": "If the distance is less than 1 meter from the infected person"
+        },
+        {
+          "option": "All the above are correct"
+        }
+      ],
+      "answer": "All the above are correct"
+    },
+    {
+      "question": "Q9)  What happens to a person suffering from COVID-19 ?",
+      "options": [
+        {
+          "option": "Around 80% of the people will require no treatment as such and will recover on their own"
+        },
+        {
+          "option": "Around <20% or a small proportion may need hospitalisation"
+        },
+        {
+          "option": "A very small proportion basically suffering from chronic illness may need admission in an Intensive Care Unit (ICU)"
+        },
+        {
+          "option": "All the above are correct"
+        }
+      ],
+      "answer": "All the above are correct"
+    },
+    {
+      "question": "Q10)  World Health Organisation on 11 February, 2020 announced an official name for the disease that is causing the 2019 novel coronavirus outbreak? What is the new name of the disease ?",
+      "options": [
+        {
+          "option": "COVID-19"
+        },
+        {
+          "option": "COVn-19"
+        },
+        {
+          "option": "COnV-20"
+        },
+        {
+          "option": "COnVID-19"
+        }
+      ],
+      "answer": "COVID-19"
     }
   ]
 }
