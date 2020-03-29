@@ -174,4 +174,12 @@ public class QuestionFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public RadioButton getRbOption4() {
+        return rbOption4;
+    }
+
+    public void setRbOption4(RadioButton rbOption4) {
+        this.rbOption4 = rbOption4;
+    }
 }

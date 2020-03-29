@@ -1,5 +1,6 @@
 package com.omnicuris.quizapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,18 +8,25 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.omnicuris.quizapp.R;
+import com.omnicuris.quizapp.adapters.ResultsRecyclerAdapter;
 import com.omnicuris.quizapp.models.ResultTO;
 import com.omnicuris.quizapp.models.UserTO;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView tvName, tvEmail, tvMobile, tvQ1, tvQ2, tvQ3, tvQ4;
-    private Button btnDone;
-    private static final String CORRECT = "correct";
-    private static final String WRONG = "wrong";
+    private TextView tvName, tvEmail, tvMobile;
+    private Button btnDone, btnRetry;
+    private RecyclerView rvResults;
+    private ResultsRecyclerAdapter resultsRecyclerAdapter;
+    private int marks = 0;
+    private UserTO userTO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,65 +38,60 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             tvEmail = findViewById(R.id.tvEmail);
             tvMobile = findViewById(R.id.tvMobile);
             btnDone = findViewById(R.id.btnDone);
-            tvQ1 = findViewById(R.id.tvQ1);
-            tvQ2 = findViewById(R.id.tvQ2);
-            tvQ3 = findViewById(R.id.tvQ3);
-            tvQ4 = findViewById(R.id.tvQ4);
+            btnRetry = findViewById(R.id.btnRetry);
+            rvResults = findViewById(R.id.rvResults);
+
             TextView tvTotalScore = findViewById(R.id.tvTotalScore);
 
-            UserTO userTO = (UserTO) getIntent().getSerializableExtra("USER_TO");
+            userTO = (UserTO) getIntent().getSerializableExtra("USER_TO");
             List<ResultTO> resultTOList = (List<ResultTO>) getIntent().getSerializableExtra("RESULT_TO");
-            Log.d("log", "userTO" + userTO);
-            Log.d("log", "resultTO" + resultTOList);
+            Log.d("log", "userTO" + userTO.toString());
+            Log.d("log", "resultTO size() = " + resultTOList.size());
             tvName.setText(userTO.getName());
             tvEmail.setText(userTO.getEmail());
             tvMobile.setText(userTO.getMobile());
-            ResultTO resultTO = resultTOList.get(0);
-
-            int marks = 0;
-            String resultStr = WRONG;
-            if (resultTO.getCorrectAnswer().equals(resultTO.getYourAnswer())) {
-                resultStr = CORRECT;
-                marks++;
-            }
-            tvQ1.setText(resultTO.getQuestionNumber() + ")    " + resultStr);
-
-            resultTO = resultTOList.get(1);
-            resultStr = WRONG;
-            if (resultTO.getCorrectAnswer().equals(resultTO.getYourAnswer())) {
-                resultStr = CORRECT;
-                marks++;
-            }
-            tvQ2.setText(resultTO.getQuestionNumber() + ")    " + resultStr);
-
-            resultTO = resultTOList.get(2);
-            resultStr = WRONG;
-            if (resultTO.getCorrectAnswer().equals(resultTO.getYourAnswer())) {
-                resultStr = CORRECT;
-                marks++;
-            }
-            tvQ3.setText(resultTO.getQuestionNumber() + ")    " + resultStr);
-
-            resultTO = resultTOList.get(3);
-            resultStr = WRONG;
-            if (resultTO.getCorrectAnswer().equals(resultTO.getYourAnswer())) {
-                resultStr = CORRECT;
-                marks++;
-            }
-            tvQ4.setText(resultTO.getQuestionNumber() + ")    " + resultStr);
 
             btnDone.setOnClickListener(this);
+            btnRetry.setOnClickListener(this);
+
+            resultsRecyclerAdapter = new ResultsRecyclerAdapter(resultTOList, this);
+            rvResults.setLayoutManager(new LinearLayoutManager(this));
+            rvResults.setItemAnimator(new DefaultItemAnimator());
+            rvResults.setAdapter(resultsRecyclerAdapter);
+            resultsRecyclerAdapter.notifyDataSetChanged();
+
+            Iterator<ResultTO> resultListIterator = resultTOList.iterator();
+            while (resultListIterator.hasNext()) {
+                ResultTO resultTO = resultListIterator.next();
+                Log.d("log", "resultTO = " + resultTO.toString());
+                if (resultTO.getYourAnswer().equals(resultTO.getCorrectAnswer())) {
+                    resultTO.setMark(1);
+                    marks++;
+                }
+            }
+
             Log.d("log", "marks = " + marks);
-            tvTotalScore.setText("Total Score : " + String.valueOf(marks));
+            tvTotalScore.setText("Total Score : " + marks);
         } catch (Exception ex) {
             Log.d("log", "Exception in ResultActivity" + ex);
+            ex.printStackTrace();
         }
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btnDone) {
-            finish();
+        switch (v.getId()) {
+            case R.id.btnDone:
+                finish();
+                break;
+            case R.id.btnRetry:
+                Intent intent = new Intent(this, QuizActivity.class);
+                intent.putExtra("USER_TO", userTO);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+                break;
+            default:
+                break;
         }
     }
 }

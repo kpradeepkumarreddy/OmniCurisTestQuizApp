@@ -83,7 +83,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             vpQuizFragment.setAdapter(quizPageAdapter);
-
+            Log.d("log", "quizPageAdapter.getCount() = " + quizPageAdapter.getCount());
             userTO = (UserTO) getIntent().getSerializableExtra("USER_TO");
         } catch (Exception ex) {
             Log.d("log", "Exception in QuizActivity " + ex);
@@ -104,16 +104,20 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                     ResultTO resultTO = resultTOList.get(vpQuizFragment.getCurrentItem());
 
                     if (rbgQuestion.getCheckedRadioButtonId() == R.id.rbOption1) {
-                        RadioButton rb =
-                                ((QuestionFragment) quizPageAdapter.getItem(vpQuizFragment.getCurrentItem())).getRbOption1();
+                        RadioButton rb = ((QuestionFragment) quizPageAdapter.getItem(
+                                vpQuizFragment.getCurrentItem())).getRbOption1();
                         resultTO.setYourAnswer(rb.getText().toString());
                     } else if (rbgQuestion.getCheckedRadioButtonId() == R.id.rbOption2) {
-                        RadioButton rb =
-                                ((QuestionFragment) quizPageAdapter.getItem(vpQuizFragment.getCurrentItem())).getRbOption2();
+                        RadioButton rb = ((QuestionFragment) quizPageAdapter.getItem(
+                                vpQuizFragment.getCurrentItem())).getRbOption2();
                         resultTO.setYourAnswer(rb.getText().toString());
                     } else if (rbgQuestion.getCheckedRadioButtonId() == R.id.rbOption3) {
-                        RadioButton rb =
-                                ((QuestionFragment) quizPageAdapter.getItem(vpQuizFragment.getCurrentItem())).getRbOption3();
+                        RadioButton rb = ((QuestionFragment) quizPageAdapter.getItem(
+                                vpQuizFragment.getCurrentItem())).getRbOption3();
+                        resultTO.setYourAnswer(rb.getText().toString());
+                    } else if (rbgQuestion.getCheckedRadioButtonId() == R.id.rbOption4) {
+                        RadioButton rb = ((QuestionFragment) quizPageAdapter.getItem(
+                                vpQuizFragment.getCurrentItem())).getRbOption4();
                         resultTO.setYourAnswer(rb.getText().toString());
                     }
                     Log.d("log", "selected an option type");
@@ -138,23 +142,27 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 ResultTO resultTO = resultTOList.get(vpQuizFragment.getCurrentItem());
 
                 if (rbgQuestion.getCheckedRadioButtonId() == R.id.rbOption1) {
-                    RadioButton rb =
-                            ((QuestionFragment) quizPageAdapter.getItem(vpQuizFragment.getCurrentItem())).getRbOption1();
+                    RadioButton rb = ((QuestionFragment) quizPageAdapter.getItem(
+                            vpQuizFragment.getCurrentItem())).getRbOption1();
                     resultTO.setYourAnswer(rb.getText().toString());
                 } else if (rbgQuestion.getCheckedRadioButtonId() == R.id.rbOption2) {
-                    RadioButton rb =
-                            ((QuestionFragment) quizPageAdapter.getItem(vpQuizFragment.getCurrentItem())).getRbOption2();
+                    RadioButton rb = ((QuestionFragment) quizPageAdapter.getItem(
+                            vpQuizFragment.getCurrentItem())).getRbOption2();
                     resultTO.setYourAnswer(rb.getText().toString());
                 } else if (rbgQuestion.getCheckedRadioButtonId() == R.id.rbOption3) {
-                    RadioButton rb =
-                            ((QuestionFragment) quizPageAdapter.getItem(vpQuizFragment.getCurrentItem())).getRbOption3();
+                    RadioButton rb = ((QuestionFragment) quizPageAdapter.getItem(
+                            vpQuizFragment.getCurrentItem())).getRbOption3();
+                    resultTO.setYourAnswer(rb.getText().toString());
+                } else if (rbgQuestion.getCheckedRadioButtonId() == R.id.rbOption4) {
+                    RadioButton rb = ((QuestionFragment) quizPageAdapter.getItem(
+                            vpQuizFragment.getCurrentItem())).getRbOption4();
                     resultTO.setYourAnswer(rb.getText().toString());
                 }
                 Log.d("log", "selected an option type");
             }
             vpQuizFragment.setCurrentItem(vpQuizFragment.getCurrentItem() + 1);
             Log.d("log", "vpQuizFragment.getCurrentItem() = " + vpQuizFragment.getCurrentItem());
-            if (vpQuizFragment.getCurrentItem() == 3) {
+            if (vpQuizFragment.getCurrentItem() == (quizPageAdapter.getCount() - 1)) {
                 btnNext.setText("Finish");
             }
         }

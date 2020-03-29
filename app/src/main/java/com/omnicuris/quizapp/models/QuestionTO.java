@@ -23,4 +23,12 @@ public class QuestionTO implements Serializable {
     public void setOptions(List<String> options) {
         this.options = options;
     }
+
+    @Override
+    public String toString() {
+        return "QuestionTO{" +
+                "question='" + question + '\'' +
+                ", options=" + options +
+                '}';
+    }
 }
