@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -31,9 +30,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import timber.log.Timber;
+
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener,
         QuestionFragment.OnFragmentInteractionListener {
     private Button btnNext;
+    private Button btnPrev;
     private QuizPagerAdapter quizPageAdapter = null;
     private NoSwipeViewPager vpQuizFragment = null;
     private RadioGroup rbgQuestion;
@@ -47,6 +49,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.activity_quiz);
             btnNext = findViewById(R.id.btnNext);
             btnNext.setOnClickListener(this);
+
+            btnPrev = findViewById(R.id.btnPrev);
+            btnPrev.setAlpha(0.3f);
+            btnPrev.setOnClickListener(null);
 
             vpQuizFragment = findViewById(R.id.vpQuizFragment);
 
@@ -83,16 +89,36 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             vpQuizFragment.setAdapter(quizPageAdapter);
-            Log.d("log", "quizPageAdapter.getCount() = " + quizPageAdapter.getCount());
+            Timber.d("quizPageAdapter.getCount() = " + quizPageAdapter.getCount());
             userTO = (UserTO) getIntent().getSerializableExtra("USER_TO");
         } catch (Exception ex) {
-            Log.d("log", "Exception in QuizActivity " + ex);
+            Timber.d("Exception in QuizActivity " + ex);
         }
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnNext) {
+            codeToRunOnNextBtnClick();
+        } else if (v.getId() == R.id.btnPrev) {
+            codeToRunOnPrevBtnClick();
+        }
+    }
+
+    private void codeToRunOnPrevBtnClick() {
+        try {
+            vpQuizFragment.setCurrentItem(vpQuizFragment.getCurrentItem() - 1);
+            if (vpQuizFragment.getCurrentItem() == 0) {
+                btnPrev.setAlpha(0.3f);
+                btnPrev.setOnClickListener(null);
+            }
+        } catch (Exception ex) {
+            Timber.e(ex, "Exception in codeToRunOnPrevBtnClick()");
+        }
+    }
+
+    private void codeToRunOnNextBtnClick() {
+        try {
             if (btnNext.getText().equals("Finish")) {
                 rbgQuestion = ((QuestionFragment) quizPageAdapter.getItem(vpQuizFragment.getCurrentItem()))
                         .getRbgQuestion();
@@ -122,7 +148,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                                 vpQuizFragment.getCurrentItem())).getRbOption4();
                         resultTO.setYourAnswer(rb.getText().toString());
                     }
-                    Log.d("log", "selected an option type");
+                    Timber.d("selected an option type");
                 }
                 Intent intent = new Intent(this, ResultActivity.class);
                 intent.putExtra("USER_TO", userTO);
@@ -160,13 +186,20 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                             vpQuizFragment.getCurrentItem())).getRbOption4();
                     resultTO.setYourAnswer(rb.getText().toString());
                 }
-                Log.d("log", "selected an option type");
+                Timber.d("selected an option type");
             }
             vpQuizFragment.setCurrentItem(vpQuizFragment.getCurrentItem() + 1);
-            Log.d("log", "vpQuizFragment.getCurrentItem() = " + vpQuizFragment.getCurrentItem());
+            // from the 2nd question onwards show the previous button
+            if (vpQuizFragment.getCurrentItem() > 0) {
+                btnPrev.setAlpha(1.0f);
+                btnPrev.setOnClickListener(this);
+            }
+            Timber.d("vpQuizFragment.getCurrentItem() = " + vpQuizFragment.getCurrentItem());
             if (vpQuizFragment.getCurrentItem() == (quizPageAdapter.getCount() - 1)) {
                 btnNext.setText("Finish");
             }
+        } catch (Exception ex) {
+            Timber.e(ex, "Exception in codeToRunOnNextBtnClick()");
         }
     }
 
@@ -186,7 +219,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             is.close();
             json = new String(buffer, "UTF-8");
         } catch (IOException ioe) {
-            Log.d("log", "exception in loadFileFromAssets = " + ioe);
+            Timber.d("exception in loadFileFromAssets = " + ioe);
             return null;
         }
         return json;
