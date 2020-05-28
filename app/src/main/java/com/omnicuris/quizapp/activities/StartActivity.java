@@ -3,7 +3,6 @@ package com.omnicuris.quizapp.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -13,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.omnicuris.quizapp.R;
 import com.omnicuris.quizapp.models.UserTO;
+
+import timber.log.Timber;
 
 public class StartActivity extends AppCompatActivity implements View.OnClickListener {
     private TextInputEditText tietName, tietEmail, tietMobile;
@@ -41,7 +42,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
                     return;
                 }
                 if (!isValidEmail(tietEmail.getText().toString())) {
-                    Log.d("log", "Invalid email");
+                    Timber.d("Invalid email");
                     tietEmail.setError("Enter Valid Email");
                     requestFocus(tietEmail);
                     return;

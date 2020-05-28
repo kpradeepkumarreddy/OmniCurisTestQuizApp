@@ -2,7 +2,6 @@ package com.omnicuris.quizapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +18,8 @@ import com.omnicuris.quizapp.models.UserTO;
 
 import java.util.Iterator;
 import java.util.List;
+
+import timber.log.Timber;
 
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tvName, tvEmail, tvMobile;
@@ -45,8 +46,8 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
             userTO = (UserTO) getIntent().getSerializableExtra("USER_TO");
             List<ResultTO> resultTOList = (List<ResultTO>) getIntent().getSerializableExtra("RESULT_TO");
-            Log.d("log", "userTO" + userTO.toString());
-            Log.d("log", "resultTO size() = " + resultTOList.size());
+            Timber.d("userTO = %s", userTO.toString());
+            Timber.d("resultTO size() = %d", resultTOList.size());
             tvName.setText(userTO.getName());
             tvEmail.setText(userTO.getEmail());
             tvMobile.setText(userTO.getMobile());
@@ -63,17 +64,17 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
             Iterator<ResultTO> resultListIterator = resultTOList.iterator();
             while (resultListIterator.hasNext()) {
                 ResultTO resultTO = resultListIterator.next();
-                Log.d("log", "resultTO = " + resultTO.toString());
+                Timber.d("resultTO = " + resultTO.toString());
                 if (resultTO.getYourAnswer().equals(resultTO.getCorrectAnswer())) {
                     resultTO.setMark(1);
                     marks++;
                 }
             }
 
-            Log.d("log", "marks = " + marks);
+            Timber.d("marks = %d", marks);
             tvTotalScore.setText("Total Score : " + marks);
         } catch (Exception ex) {
-            Log.d("log", "Exception in ResultActivity" + ex);
+            Timber.d(ex, "Exception in ResultActivity ");
             ex.printStackTrace();
         }
     }

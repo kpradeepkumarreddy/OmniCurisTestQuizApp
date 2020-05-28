@@ -3,7 +3,6 @@ package com.omnicuris.quizapp.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.omnicuris.quizapp.R;
 import com.omnicuris.quizapp.models.QuestionTO;
+
+import timber.log.Timber;
 
 
 /**
@@ -92,7 +93,7 @@ public class QuestionFragment extends Fragment {
             args.putString(ARG_PARAM2, param2);
             fragment.setArguments(args);
         } catch (Exception ex) {
-            Log.d("log", "Exception in QuestionFragment::newInstance()" + ex);
+            Timber.e(ex, "Exception in QuestionFragment::newInstance() ");
         }
         return fragment;
     }
@@ -106,7 +107,7 @@ public class QuestionFragment extends Fragment {
                 mParam2 = getArguments().getString(ARG_PARAM2);
             }
         } catch (Exception ex) {
-            Log.d("log", "Exception in QuestionFragment::onCreate()" + ex);
+            Timber.e(ex, "Exception in QuestionFragment::onCreate() ");
         }
     }
 
@@ -131,7 +132,7 @@ public class QuestionFragment extends Fragment {
 
             return view;
         } catch (Exception ex) {
-            Log.d("log", "Exception in QuestionFragment::onCreateView()" + ex);
+            Timber.e(ex, "Exception in QuestionFragment::onCreateView() ");
         }
         return null;
     }

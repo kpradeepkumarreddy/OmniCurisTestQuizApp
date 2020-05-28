@@ -51,6 +51,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             btnNext.setOnClickListener(this);
 
             btnPrev = findViewById(R.id.btnPrev);
+            // by default keeping the previous button greyed out, will enable it from 2nd question
             btnPrev.setAlpha(0.3f);
             btnPrev.setOnClickListener(null);
 
@@ -109,6 +110,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         try {
             vpQuizFragment.setCurrentItem(vpQuizFragment.getCurrentItem() - 1);
             if (vpQuizFragment.getCurrentItem() == 0) {
+                // greying out the previous button, when the user is in first question
                 btnPrev.setAlpha(0.3f);
                 btnPrev.setOnClickListener(null);
             }
@@ -191,8 +193,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
             vpQuizFragment.setCurrentItem(vpQuizFragment.getCurrentItem() + 1);
             // from the 2nd question onwards show the previous button
             if (vpQuizFragment.getCurrentItem() > 0) {
-                btnPrev.setAlpha(1.0f);
-                btnPrev.setOnClickListener(this);
+                if (btnPrev.getAlpha() < 1.0f) {
+                    btnPrev.setAlpha(1.0f);
+                    btnPrev.setOnClickListener(this);
+                }
             }
             Timber.d("vpQuizFragment.getCurrentItem() = " + vpQuizFragment.getCurrentItem());
             if (vpQuizFragment.getCurrentItem() == (quizPageAdapter.getCount() - 1)) {
